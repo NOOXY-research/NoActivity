@@ -72,9 +72,11 @@ function Service(Me, NoService) {
         else {
           meta = entitymeta;
         }
-        fs.appendFile('entity.log', '['+date+'] '+entityID+' '+JSON.stringify(meta, null, 0)+'\n', safec((err)=> {
-          if (err) throw err;
-        }));
+        if(meta.mode == 'normal') {
+          fs.appendFile('entity.log', '['+date+'] '+entityID+' '+JSON.stringify(meta, null, 0)+'\n', safec((err)=> {
+            if (err) throw err;
+          }));
+        }
       };
     });
 
