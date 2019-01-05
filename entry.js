@@ -92,9 +92,11 @@ function Service(Me, NoService) {
       if(settings.entity_log) {
         let date = new Date();
         date = date.toISOString().replace(/T/, ' ').replace(/\..+/, '') ;
-        fs.appendFile('entity.log', '['+date+'] '+entityID+' closed\n', safec((err)=> {
-          if (err) throw err;
-        }));
+        if(meta.mode == 'normal') {
+          fs.appendFile('entity.log', '['+date+'] '+entityID+' closed\n', safec((err)=> {
+            if (err) throw err;
+          }));
+        }
       }
     });
 
