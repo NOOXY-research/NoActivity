@@ -26,6 +26,10 @@ function Service(Me, NoService) {
     // let admin_daemon_asock = NoService.Service.ActivitySocket.createDefaultAdminDeamonSocket('Another Service', (err, activitysocket)=> {
     //   // accessing other service
     // });
+    let now = new Date();
+    now = now.toISOString().replace(/T/, ' ').replace(/\..+/, '') ;
+    fs.appendFileSync('entity.log', '['+now+'] '+Me.Manifest.name+' started. Start recording.\n');
+
     NoService.Daemon.getSettings((err, daemon_setting)=>{
       if(daemon_setting.debug) {
         NoService.Sniffer.onRouterJSON((err, Json)=>{
@@ -201,6 +205,9 @@ function Service(Me, NoService) {
 
   // If the daemon stop, your service recieve close signal here.
   this.close = ()=> {
+      let now = new Date();
+      now = now.toISOString().replace(/T/, ' ').replace(/\..+/, '') ;
+      fs.appendFileSync('entity.log', '['+now+'] '+Me.Manifest.name+' closed. Stop recording.\n');
     // Saving state of you service.
     // Please save and manipulate your files in this directory
   }
