@@ -28,7 +28,11 @@ function Service(Me, NoService) {
     // });
     let now = new Date();
     now = now.toISOString().replace(/T/, ' ').replace(/\..+/, '') ;
-    fs.appendFileSync('entity.log', '['+now+'] '+Me.Manifest.name+' started. Start recording.\n');
+    if(settings.entity_log)
+      fs.appendFileSync('entity.log', '['+now+'] '+Me.Manifest.name+' started. Start recording.\n');
+    if(settings.protocol_log)
+      fs.appendFileSync('protocol.log', '['+now+'] '+Me.Manifest.name+' started. Start recording.\n');
+
 
     NoService.Daemon.getSettings((err, daemon_setting)=>{
       if(daemon_setting.debug) {
@@ -207,7 +211,10 @@ function Service(Me, NoService) {
   this.close = ()=> {
       let now = new Date();
       now = now.toISOString().replace(/T/, ' ').replace(/\..+/, '') ;
-      fs.appendFileSync('entity.log', '['+now+'] '+Me.Manifest.name+' closed. Stop recording.\n');
+      if(settings.entity_log)
+        fs.appendFileSync('entity.log', '['+now+'] '+Me.Manifest.name+' started. Stop recording.\n');
+      if(settings.protocol_log)
+        fs.appendFileSync('protocol.log', '['+now+'] '+Me.Manifest.name+' started. Stop recording.\n');
     // Saving state of you service.
     // Please save and manipulate your files in this directory
   }
