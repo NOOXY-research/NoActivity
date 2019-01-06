@@ -72,7 +72,7 @@ function Service(Me, NoService) {
         else {
           meta = entitymeta;
         }
-        if(meta.mode == 'normal') {
+        if(entitymeta.mode == 'normal') {
           fs.appendFile('entity.log', '['+date+'] '+entityID+' '+JSON.stringify(meta, null, 0)+'\n', safec((err)=> {
             if (err) throw err;
           }));
@@ -92,7 +92,7 @@ function Service(Me, NoService) {
       if(settings.entity_log) {
         let date = new Date();
         date = date.toISOString().replace(/T/, ' ').replace(/\..+/, '') ;
-        if(meta.mode == 'normal') {
+        if(entitymeta.mode == 'normal') {
           fs.appendFile('entity.log', '['+date+'] '+entityID+' closed\n', safec((err)=> {
             if (err) throw err;
           }));
