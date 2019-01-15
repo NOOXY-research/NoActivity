@@ -13,7 +13,7 @@
     "node_packages": {},
     "services": {}
   },
-  "socketfunctions": {
+  "servicefunctions": {
     "getActivity": {
       "displayname": "Get activity",
       "description": "Get activity of specified user.",
